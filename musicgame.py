@@ -82,9 +82,9 @@ class Guitar(GameObject):
 # strawberry moves horizontally rather than veritcally
 
 
-class Saxophone(GameObject):
+class Instrument(GameObject):
     def __init__(self):
-        super(Saxophone, self).__init__(0, 0, 'saxophone.png')
+        super(Instrument, self).__init__(0, 0, 'saxophone.png')
         self.dx = (randint(0, 200) / 100) + 1
         self.dy = 0
         self.reset()
@@ -104,7 +104,7 @@ class Saxophone(GameObject):
 guitar = Guitar()
 
 # strawberry
-saxophone = Saxophone()
+instrument = Instrument()
 
 
 # Bomb
@@ -205,14 +205,14 @@ all_sprites = pygame.sprite.Group()
 # Add sprites to group
 all_sprites.add(player)
 all_sprites.add(guitar)
-all_sprites.add(saxophone)
+all_sprites.add(instrument)
 all_sprites.add(thumbs)
 
 # make a fruits Group
 fruit_sprites = pygame.sprite.Group()
 
 fruit_sprites.add(guitar)
-fruit_sprites.add(saxophone)
+fruit_sprites.add(instrument)
 
 # Creat the game loop
 running = True
@@ -254,18 +254,24 @@ while running:
         points = 0
         pygame.mixer.Sound.play(boo)
         thumbs.reset()
-    if points <= 5:
+    if points <= 20:
         player.update_image('colton.png')
-    if points > 5:
-        player.update_image('keath.png')
-    if points > 10:
-        player.update_image('rob.png')
-    if points > 15:
-        player.update_image('jesse.png')
+        instrument.update_image('saxophone.png')
     if points > 20:
+        player.update_image('keath.png')
+        instrument.update_image('trumpet.png')
+    if points > 40:
+        player.update_image('rob.png')
+        instrument.update_image('drums.png')
+    if points > 60:
+        player.update_image('jesse.png')
+        instrument.update_image('bass.png')
+    if points > 80:
         player.update_image('dylan.png')
-    if points > 25:
+        instrument.update_image('trombone.png')
+    if points > 100:
         player.update_image('jay.png')
+        instrument.update_image('guitar.png')
      # Draw the points
     draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=20)
     draw_text(text=f'High Score: {high_score}', color= (0, 0, 0), font_size=24, x=370, y=20)
