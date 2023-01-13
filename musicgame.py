@@ -68,18 +68,18 @@ class Mountain(GameObject):
     def move(self):
         self.x += self.dx
         self.y += self.dy
-        # Check the y position of the apple
+        # Check the y position of the mountain
         if self.y > 500:
             self.reset()
 
     # add a new method
-#  move an Apple back to the top of the screen after moving off the bottom and give it a new random x.
+#  move an mountain back to the top of the screen after moving off the bottom and give it a new random x.
     def reset(self):
-        # Here the Apple chooses a random value from the lanes List when it needs an x position.
+        # Here the mountain chooses a random value from the lanes List when it needs an x position.
         self.x = choice(lanes)
         self.y = -64
 
-# strawberry moves horizontally rather than veritcally
+# instrument moves horizontally rather than veritcally
 
 
 class Instrument(GameObject):
@@ -103,7 +103,7 @@ class Instrument(GameObject):
 # Make an instance of image
 mountain = Mountain()
 
-# strawberry
+# instrument
 instrument = Instrument()
 
 
@@ -208,11 +208,11 @@ all_sprites.add(mountain)
 all_sprites.add(instrument)
 all_sprites.add(thumbs)
 
-# make a fruits Group
-fruit_sprites = pygame.sprite.Group()
+# make a Group
+iatm_sprites = pygame.sprite.Group()
 
-fruit_sprites.add(mountain)
-fruit_sprites.add(instrument)
+iatm_sprites.add(mountain)
+iatm_sprites.add(instrument)
 
 # Creat the game loop
 running = True
@@ -242,11 +242,11 @@ while running:
         entity.render(screen)
 # Check Colisions
 # This method returns a sprite from the group that has collided with the test sprite.
-    fruit = pygame.sprite.spritecollideany(player, fruit_sprites)
-    if fruit:
+    iatm = pygame.sprite.spritecollideany(player, iatm_sprites)
+    if iatm:
         points += 1
         pygame.mixer.Sound.play(cheer)
-        fruit.reset()
+        iatm.reset()
     # Check collision player and bomb
     if pygame.sprite.collide_rect(player, thumbs):
         if points > high_score:
