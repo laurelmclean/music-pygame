@@ -58,9 +58,9 @@ class GameObject(pygame.sprite.Sprite):
 # generates random number for x position and always starts a y 0
 
 
-class Guitar(GameObject):
+class Mountain(GameObject):
     def __init__(self):
-        super(Guitar, self).__init__(0, 0, 'guitar.png')
+        super(Mountain, self).__init__(0, 0, 'mountain.png')
         self.dx = 0
         self.dy = (randint(0, 200) / 100) + 1
         self.reset()  # call reset here!
@@ -101,7 +101,7 @@ class Instrument(GameObject):
 
 
 # Make an instance of image
-guitar = Guitar()
+mountain = Mountain()
 
 # strawberry
 instrument = Instrument()
@@ -204,14 +204,14 @@ all_sprites = pygame.sprite.Group()
 
 # Add sprites to group
 all_sprites.add(player)
-all_sprites.add(guitar)
+all_sprites.add(mountain)
 all_sprites.add(instrument)
 all_sprites.add(thumbs)
 
 # make a fruits Group
 fruit_sprites = pygame.sprite.Group()
 
-fruit_sprites.add(guitar)
+fruit_sprites.add(mountain)
 fruit_sprites.add(instrument)
 
 # Creat the game loop
@@ -274,6 +274,7 @@ while running:
         instrument.update_image('guitar.png')
      # Draw the points
     draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=20)
+    # draw high score
     draw_text(text=f'High Score: {high_score}', color= (0, 0, 0), font_size=24, x=370, y=20)
 # Update the window
     pygame.display.flip()
