@@ -23,10 +23,12 @@ def draw_text(text, color, font_size, x, y):
     img = font.render(text, True, color)
     screen.blit(img, (x, y))
 
+
 # sound effects
 boo = pygame.mixer.Sound("boo.wav")
 cheer = pygame.mixer.Sound("cheer.wav")
 
+# background music
 mixer.init()
 mixer.music.load('Denigrate.mp3')
 mixer.music.play()
@@ -42,11 +44,15 @@ class GameObject(pygame.sprite.Sprite):
         self.y = y
         #  The get_rect() method returns a Rect object with the dimensions of the Surface.
         self.rect = self.surf.get_rect()
+    
+    def update_image(self, new_image):
+        self.surf = pygame.image.load(new_image)
 
     def render(self, screen):
         self.rect.x = self.x
         self.rect.y = self.y
         screen.blit(self.surf, (self.x, self.y))
+
 
 # class extends GameObject
 # generates random number for x position and always starts a y 0
@@ -100,6 +106,7 @@ guitar = Guitar()
 # strawberry
 saxophone = Saxophone()
 
+
 # Bomb
 
 
@@ -150,7 +157,7 @@ class Player(GameObject):
         self.dy = 0
         self.pos_x = 1
         self.pos_y = 1
-        self.reset()
+        self.reset() 
 
     def left(self):
         if self.pos_x > 0:
@@ -185,6 +192,7 @@ class Player(GameObject):
     def update_dx_dy(self):
         self.dx = lanes[self.pos_x]
         self.dy = lanes[self.pos_y]
+
 
 
 # make an instance of Player
@@ -246,6 +254,18 @@ while running:
         points = 0
         pygame.mixer.Sound.play(boo)
         thumbs.reset()
+    if points <= 5:
+        player.update_image('colton.png')
+    if points > 5:
+        player.update_image('keath.png')
+    if points > 10:
+        player.update_image('rob.png')
+    if points > 15:
+        player.update_image('jesse.png')
+    if points > 20:
+        player.update_image('dylan.png')
+    if points > 25:
+        player.update_image('jay.png')
      # Draw the points
     draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=20)
     draw_text(text=f'High Score: {high_score}', color= (0, 0, 0), font_size=24, x=370, y=20)
