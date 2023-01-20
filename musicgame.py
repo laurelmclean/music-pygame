@@ -18,6 +18,10 @@ points = 0
 # high score
 high_score = 0
 
+# level
+level = 1
+level_name = ''
+
 def draw_text(text, color, font_size, x, y):
     font = pygame.font.SysFont(None, font_size)
     img = font.render(text, True, color)
@@ -257,25 +261,39 @@ while running:
     if points <= 20:
         player.update_image('colton.png')
         instrument.update_image('saxophone.png')
+        level = 1
+        level_name = 'Colton'
     if points > 20:
         player.update_image('keath.png')
         instrument.update_image('trumpet.png')
+        level = 2
+        level_name = 'Keath'
     if points > 40:
         player.update_image('rob.png')
         instrument.update_image('drums.png')
+        level = 3
+        level_name = 'Rob'
     if points > 60:
         player.update_image('jesse.png')
         instrument.update_image('bass.png')
+        level = 4
+        level_name = 'Jesse'
     if points > 80:
         player.update_image('dylan.png')
         instrument.update_image('trombone.png')
+        level = 5
+        level_name = 'Dylan'
     if points > 100:
         player.update_image('jay.png')
         instrument.update_image('guitar.png')
+        level = 6
+        level_name = 'Jay'
      # Draw the points
-    draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=20)
+    draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=50)
     # draw high score
     draw_text(text=f'High Score: {high_score}', color= (0, 0, 0), font_size=24, x=370, y=20)
+    # draw levels
+    draw_text(text=f'Level {level}: {level_name}', color=(0, 0, 0), font_size=24, x=20, y=20)
 # Update the window
     pygame.display.flip()
     # tick the clock!
