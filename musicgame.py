@@ -153,6 +153,9 @@ class Thumbs(GameObject):
 
 thumbs = Thumbs()
 
+thumbs2 = Thumbs()
+thumbs3 = Thumbs()
+
 
 class Player(GameObject):
     def __init__(self):
@@ -258,11 +261,14 @@ while running:
         points = 0
         pygame.mixer.Sound.play(boo)
         thumbs.reset()
+    
     if points <= 20:
         player.update_image('colton.png')
         instrument.update_image('saxophone.png')
         level = 1
         level_name = 'Colton'
+        all_sprites.remove(thumbs2)
+        all_sprites.remove(thumbs3)
     if points > 20:
         player.update_image('keath.png')
         instrument.update_image('trumpet.png')
@@ -273,6 +279,13 @@ while running:
         instrument.update_image('drums.png')
         level = 3
         level_name = 'Rob'
+        all_sprites.add(thumbs2)
+        if pygame.sprite.collide_rect(player, thumbs2):
+            if points > high_score:
+                high_score = points
+            points = 0
+            pygame.mixer.Sound.play(boo)
+            thumbs2.reset()
     if points > 60:
         player.update_image('jesse.png')
         instrument.update_image('bass.png')
@@ -283,6 +296,13 @@ while running:
         instrument.update_image('trombone.png')
         level = 5
         level_name = 'Dylan'
+        all_sprites.add(thumbs3)
+        if pygame.sprite.collide_rect(player, thumbs3):
+            if points > high_score:
+                high_score = points
+            points = 0
+            pygame.mixer.Sound.play(boo)
+            thumbs3.reset()
     if points > 100:
         player.update_image('jay.png')
         instrument.update_image('guitar.png')
