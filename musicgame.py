@@ -239,7 +239,7 @@ while running:
                 player.down()
 
 # Clear screen
-    screen.fill((255, 255, 255))
+    screen.fill((219, 156, 217))
 # Move and render Sprites
     for entity in all_sprites:
         entity.move()
@@ -289,11 +289,12 @@ while running:
         level = 6
         level_name = 'Jay'
      # Draw the points
-    draw_text(text=f'Points: {points}', color= (0, 0, 0), font_size=24, x=20, y=50)
+    draw_text(text=f'Points: {points}', color=(6, 13, 51), font_size=24, x=20, y=50)
     # draw high score
-    draw_text(text=f'High Score: {high_score}', color= (0, 0, 0), font_size=24, x=370, y=20)
+    draw_text(text=f'High Score: {high_score}', color= (6, 13, 51), font_size=24, x=370, y=20)
     # draw levels
-    draw_text(text=f'Level {level}: {level_name}', color=(0, 0, 0), font_size=24, x=20, y=20)
+    draw_text(text=f'Level {level}: {level_name}',
+              color=(6, 13, 51), font_size=24, x=20, y=20)
 # Update the window
     pygame.display.flip()
     # tick the clock!
