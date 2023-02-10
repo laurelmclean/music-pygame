@@ -35,7 +35,8 @@ cheer = pygame.mixer.Sound("cheer.wav")
 # background music
 mixer.init()
 mixer.music.load('Denigrate.mp3')
-mixer.music.play()
+#  -1 will loop music indefinitely
+mixer.music.play(-1)
 
 # Make a Game Object class that draws a rectangle.
 
@@ -308,6 +309,13 @@ while running:
         instrument.update_image('guitar.png')
         level = 6
         level_name = 'Jay'
+    if points > 120:
+        font = pygame.font.Font(None, 36)
+        text = font.render("YOU WIN!!", True, (255, 255, 255))
+        text_rect = text.get_rect()
+        text_x = screen.get_width() / 2 - text_rect.width / 2
+        text_y = screen.get_height() / 2 - text_rect.height / 2
+        screen.blit(text, [text_x, text_y])
      # Draw the points
     draw_text(text=f'Points: {points}', color=(6, 13, 51), font_size=24, x=20, y=50)
     # draw high score
