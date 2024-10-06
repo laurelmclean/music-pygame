@@ -29,12 +29,12 @@ def draw_text(text, color, font_size, x, y):
 
 
 # sound effects
-boo = pygame.mixer.Sound("boo.wav")
-cheer = pygame.mixer.Sound("cheer.wav")
+boo = pygame.mixer.Sound("assets/boo.wav")
+cheer = pygame.mixer.Sound("assets/cheer.wav")
 
 # background music
 mixer.init()
-mixer.music.load('Denigrate.mp3')
+mixer.music.load('assets/Denigrate.mp3')
 #  -1 will loop music indefinitely
 mixer.music.play(-1)
 
@@ -65,7 +65,7 @@ class GameObject(pygame.sprite.Sprite):
 
 class Mountain(GameObject):
     def __init__(self):
-        super(Mountain, self).__init__(0, 0, 'mountain.png')
+        super(Mountain, self).__init__(0, 0, 'assets/mountain.png')
         self.dx = 0
         self.dy = (randint(0, 200) / 100) + 1
         self.reset()  # call reset here!
@@ -89,7 +89,7 @@ class Mountain(GameObject):
 
 class Instrument(GameObject):
     def __init__(self):
-        super(Instrument, self).__init__(0, 0, 'saxophone.png')
+        super(Instrument, self).__init__(0, 0, 'assets/saxophone.png')
         self.dx = (randint(0, 200) / 100) + 1
         self.dy = 0
         self.reset()
@@ -117,7 +117,7 @@ instrument = Instrument()
 
 class Thumbs(GameObject):
     def __init__(self):
-        super(Thumbs, self).__init__(0, 0, 'thumbs.png')
+        super(Thumbs, self).__init__(0, 0, 'assets/thumbs.png')
         self.dx = 0
         self.dy = 0
         self.reset()
@@ -160,7 +160,7 @@ thumbs3 = Thumbs()
 
 class Player(GameObject):
     def __init__(self):
-        super(Player, self).__init__(0, 0, 'colton.png')
+        super(Player, self).__init__(0, 0, 'assets/colton.png')
         self.dx = 0
         self.dy = 0
         self.pos_x = 1
@@ -262,24 +262,25 @@ while running:
         points = 0
         pygame.mixer.Sound.play(boo)
         thumbs.reset()
-    
+    # switch players and instruments each level
     if points <= 20:
-        player.update_image('colton.png')
-        instrument.update_image('saxophone.png')
+        player.update_image('assets/colton.png')
+        instrument.update_image('assets/saxophone.png')
         level = 1
         level_name = 'Colton'
         all_sprites.remove(thumbs2)
         all_sprites.remove(thumbs3)
     if points > 20:
-        player.update_image('keath.png')
-        instrument.update_image('trumpet.png')
+        player.update_image('assets/keath.png')
+        instrument.update_image('assets/trumpet.png')
         level = 2
         level_name = 'Keath'
     if points > 40:
-        player.update_image('rob.png')
-        instrument.update_image('drums.png')
+        player.update_image('assets/rob.png')
+        instrument.update_image('assets/drums.png')
         level = 3
         level_name = 'Rob'
+        #  add additional thumb
         all_sprites.add(thumbs2)
         if pygame.sprite.collide_rect(player, thumbs2):
             if points > high_score:
@@ -288,15 +289,16 @@ while running:
             pygame.mixer.Sound.play(boo)
             thumbs2.reset()
     if points > 60:
-        player.update_image('jesse.png')
-        instrument.update_image('bass.png')
+        player.update_image('assets/jesse.png')
+        instrument.update_image('assets/bass.png')
         level = 4
         level_name = 'Jesse'
     if points > 80:
-        player.update_image('dylan.png')
-        instrument.update_image('trombone.png')
+        player.update_image('assets/dylan.png')
+        instrument.update_image('assets/trombone.png')
         level = 5
         level_name = 'Dylan'
+        #  add additional thumb
         all_sprites.add(thumbs3)
         if pygame.sprite.collide_rect(player, thumbs3):
             if points > high_score:
@@ -305,10 +307,11 @@ while running:
             pygame.mixer.Sound.play(boo)
             thumbs3.reset()
     if points > 100:
-        player.update_image('jay.png')
-        instrument.update_image('guitar.png')
+        player.update_image('assets/jay.png')
+        instrument.update_image('assets/guitar.png')
         level = 6
         level_name = 'Jay'
+    #  win game
     if points > 120:
         font = pygame.font.Font(None, 36)
         text = font.render("YOU WIN!!", True, (255, 255, 255))
